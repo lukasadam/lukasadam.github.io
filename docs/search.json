@@ -1,0 +1,44 @@
+[
+  {
+    "objectID": "license.html",
+    "href": "license.html",
+    "title": "License",
+    "section": "",
+    "text": "My blog posts are released under a Creative Commons Attribution-ShareAlike 4.0 International License."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Hey there, I’m Lukas 👋",
+    "section": "",
+    "text": "Welcome to my corner of the internet! I’m a a PhD student shared between the Department of Biosystems Science and Engineering at ETH and the Roche Institute of Human Biology (IHB) in Basel. For my PhD, I aim to resolve how gene regulatory networks are wired in the intestine and which components are truly unique to humans. To bring these mysteries to light, I’m using single-cell multi-omics, perturbation & comparative genomics data.\nBeyond research, I’m passionate about coding, data exploration, and sharing knowledge. This blog is my way of combining those interests — an evolving space to teach and learn about all things data analysis, from biology to the broader world.\nThanks for stopping by and let’s explore data related concepts together! 🚀"
+  },
+  {
+    "objectID": "index.html#here-are-my-latest-blog-posts",
+    "href": "index.html#here-are-my-latest-blog-posts",
+    "title": "Hey there, I’m Lukas 👋",
+    "section": "Here are my latest blog posts",
+    "text": "Here are my latest blog posts\n\n\n\n\n\n\n\n\nWelcome To My Blog\n\n\n\nNews\n\n\n\n\n\n\n\nLukas Adam\n\n\nDec 23, 2024\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "index.html#stay-connected",
+    "href": "index.html#stay-connected",
+    "title": "Hey there, I’m Lukas 👋",
+    "section": "🔗 Stay Connected",
+    "text": "🔗 Stay Connected\n\n LinkedIn\n GitHub"
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this blog"
+  }
+]

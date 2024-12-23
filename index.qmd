@@ -1,0 +1,47 @@
+---
+page-layout: full
+about:
+  id: hero-heading
+  template: solana
+  image: assets/profile.png
+format:
+  html:
+    include-in-header:
+      text: |
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+listing:
+  id: sample-listings
+  contents: posts
+  type: grid
+  sort: "date desc"
+  categories: true
+  sort-ui: false
+  filter-ui: false
+  grid-columns: 3
+---
+
+::: {#hero-heading}
+
+# Hey there, I'm Lukas 👋
+
+Welcome to my corner of the internet! I'm a a PhD student shared between the [Department of Biosystems Science and Engineering](https://bsse.ethz.ch/) at ETH and the [Roche Institute of Human Biology](https://institutehumanbiology.com/) (IHB) in Basel. For my PhD, I aim to resolve how gene regulatory networks are wired in the intestine and which components are truly unique to humans. To bring these mysteries to light, I’m using single-cell multi-omics, perturbation & comparative genomics data.
+
+Beyond research, I’m passionate about coding, data exploration, and sharing knowledge. This blog is my way of combining those interests — an evolving space to teach and learn about all things data analysis, from biology to the broader world. 
+
+Thanks for stopping by and let’s explore data related concepts together! 🚀
+:::
+
+<br>
+
+## Here are my latest blog posts
+
+::: {#sample-listings}
+:::
+
+## 🔗 Stay Connected 
+
+- [<i class="fab fa-linkedin"></i> LinkedIn](https://linkedin.com/in/lukas-adam)
+- [<i class="fab fa-github"></i> GitHub](https://github.com/lukasadam)
+
+
+
