@@ -65,6 +65,10 @@ $navbar-fg: $base;
 }
 
 .polygon-header {
+  position: relative; /* Allows positioning of the ::after element */
+  font-size: 2rem; /* Adjust as needed */
+  text-align: center; /* Center the text */
+  margin-bottom: 2rem; /* Adds space between the header and the line */
   color: white;
 }
 
