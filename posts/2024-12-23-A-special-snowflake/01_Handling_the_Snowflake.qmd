@@ -226,6 +226,8 @@ class SnowflakeHandler:
 ```
 
 Now we can upload or download data from the snowflake however we want. Bear in mind that we currently only support upload of csv files. Similarly, downloading tables from the cloud will save them as csv files. Given that we can also upload semi-structured data, I'd like to see whether we can also upload parquet or feather files, which would drastically enhance the usability. 
+
+### Uploading a local csv file to a table in snowflake
 ```{python}
 #| eval: false
 
@@ -245,10 +247,12 @@ handler = SnowflakeHandler(
 handler.upload_table()
 handler.close_connection()
 ```
+
+### Downloading a table from snowflake to a local csv file
 ```{python}
 #| eval: false
 
-# Parameters for file upload
+# Parameters for file download
 local_csv_path = "/Users/adaml9/Private/kaggle/playground-series/s4e11/train2.csv" 
 config_path = "/Users/adaml9/Private/snowflake/upload/config.json"
 stage_name = "@~"
