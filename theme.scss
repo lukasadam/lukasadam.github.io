@@ -118,6 +118,20 @@ $navbar-fg: $base;
   height: calc(400px - 50px);
 }
 
+.float-right {
+  float: right;
+  margin: 0 0 1rem 1rem;
+  max-width: 40%;
+  border-radius: 8px;
+}
+
+.quarto-figure-caption {
+  font-size: 0.9rem;
+  color: #555;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
 /* cyrillic-ext */
 @font-face {
   font-family: 'Roboto';

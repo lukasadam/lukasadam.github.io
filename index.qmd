@@ -45,7 +45,7 @@ listing:
 :::
 
 ::: {.justify}
-Welcome to my corner of the internet! I'm a a PhD student shared between the [Department of Biosystems Science and Engineering](https://bsse.ethz.ch/) at ETH and the [Roche Institute of Human Biology](https://institutehumanbiology.com/) (IHB) in Basel. For my PhD, I aim to resolve how gene regulatory networks are wired in the intestine and which components are truly unique to humans. To bring these mysteries to light, I’m using single-cell multi-omics, perturbation & comparative genomics data.
+Welcome to my corner of the internet! I'm a PhD student shared between the [Department of Biosystems Science and Engineering](https://bsse.ethz.ch/) at ETH and the [Roche Institute of Human Biology](https://institutehumanbiology.com/) (IHB) in Basel. For my PhD, I aim to resolve how gene regulatory networks are wired in the intestine and which components are truly unique to humans. To bring these mysteries to light, I’m using single-cell multi-omics, perturbation & comparative genomics data.
 
 Beyond research, I’m passionate about coding, data exploration, and sharing knowledge. This blog is my way of combining those interests — an evolving space to teach and learn about all things data analysis, from biology to the broader world. 
 
@@ -58,5 +58,4 @@ Thanks for stopping by and let’s explore data related concepts together! 🚀
 
 ::: {#sample-listings}
 :::
-
 
