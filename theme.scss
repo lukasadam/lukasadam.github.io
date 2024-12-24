@@ -23,8 +23,8 @@ $sapphire: #209fb5;
 $blue: #1e66f5;
 $lavender: #7287fd;
 $text: #2c2d3b;
-$accent: #81425f;
-$link: #c288a3;
+$accent: #46343d;
+$link: #7D7077;
 $subtext1: #5c5f77;
 $subtext0: #6c6f85;
 $overlay2: #7c7f93;
@@ -53,6 +53,48 @@ $navbar-fg: $base;
 
 
 /*-- scss:rules --*/
+
+/* custom */
+.about-image {
+  border: 10px solid $white;
+  z-index: -3;
+}
+
+.quarto-listing-category, .quarto-listing-category-title {
+  color: white;
+}
+
+.polygon-header {
+  color: white;
+}
+
+.polygon-outer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 400px;
+  background: $accent; 
+  clip-path: polygon(
+      0% 0%, 25% 10%, 50% 0%, 75% 10%, 100% 0%, 
+      100% 100%, 75% 90%, 50% 100%, 25% 90%, 0% 100%
+  );
+  z-index: -2;
+}
+
+.polygon-inner {
+  position: absolute;
+  top: 10px; 
+  left: 0;
+  width: 100%;
+  height: calc(400px - 20px);
+  background: $accent; /* Inner color */
+  clip-path: polygon(
+      0% 0%, 25% 10%, 50% 0%, 75% 10%, 100% 0%, 
+      100% 100%, 75% 90%, 50% 100%, 25% 90%, 0% 100%
+  );
+  z-index: -1;
+}
 
 /* cyrillic-ext */
 @font-face {
