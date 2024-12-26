@@ -1,0 +1,52 @@
+project:
+  output-dir: docs
+  type: website
+  resources:
+    - "assets/*"
+    - './CNAME'
+
+website:
+  description: "Personal website of Lukas Adam"
+
+  site-url: https://lukas-adam.com
+  repo-url: https://github.com/lukasadam/lukasadam.github.io
+  open-graph:
+    title: "lukasadam"
+    description: "Personal website of Lukas Adam"
+    image: ./www/favicon.png
+  page-navigation: true
+  navbar:
+    search: true
+    left:
+      - text: "Lukas Adam"
+        href: "./index.qmd"
+    right:
+      - text: "About me"
+        href: https://lukasadam.github.io/online-cv/
+      - icon: github
+        href: https://github.com/lukasadam
+      - icon: linkedin
+        href: https://linkedin.com/in/lukas-adam
+  page-footer:
+    left: 
+      - text: "License"
+        href: "./license.qmd"
+    center: |
+      Powered by [Quarto](https://quarto.org).
+    right: |
+      License: [CC BY NC SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0).
+    border: true
+    
+format:
+  html:
+    lang: en
+    code-copy: false
+    code-link: false
+    anchor-sections: true
+    email-obfuscation: javascript
+    link-external-newwindow: true
+    theme: [theme.scss]
+    css: styles.css
+
+execute:
+  freeze: auto

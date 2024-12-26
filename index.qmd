@@ -1,0 +1,61 @@
+---
+page-layout: full
+about:
+  id: hero-heading
+  template: jolla
+  image: assets/profile.png
+  links:
+    - icon: twitter
+      text: Twitter
+      href: https://twitter.com/LukasAd85691603
+    - icon: github
+      text: Github
+      href: https://github.com/lukasadam
+    - icon: linkedin
+      text: LinkedIn
+      href: https://linkedin.com/in/lukas-adam
+    - icon: envelope
+      text: Email
+      href: "mailto:gm.lukas.adam@gmail.com"   
+format:
+  html:
+    include-in-header:
+      text: |
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+listing:
+  id: sample-listings
+  contents: posts
+  type: grid
+  sort: "date desc"
+  sort-ui: false
+  filter-ui: false
+  grid-columns: 3
+---
+
+```{=html}
+<div class="polygon-wrapper">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+  <path fill="white" fill-opacity="1" d="M0,64L24,85.3C48,107,96,149,144,154.7C192,160,240,128,288,101.3C336,75,384,53,432,48C480,43,528,53,576,80C624,107,672,149,720,160C768,171,816,149,864,128C912,107,960,85,1008,64C1056,43,1104,21,1152,21.3C1200,21,1248,43,1296,58.7C1344,75,1392,85,1416,90.7L1440,96L1440,320L1416,320C1392,320,1344,320,1296,320C1248,320,1200,320,1152,320C1104,320,1056,320,1008,320C960,320,912,320,864,320C816,320,768,320,720,320C672,320,624,320,576,320C528,320,480,320,432,320C384,320,336,320,288,320C240,320,192,320,144,320C96,320,48,320,24,320L0,320Z"></path>
+</svg>      
+    </div>
+<div><h1 class="polygon-header center">Hey there, I'm Lukas 👋</h1></div>
+```
+
+::: {#hero-heading}
+:::
+
+::: {.justify}
+Welcome to my corner of the internet! I'm a PhD student shared between the [Department of Biosystems Science and Engineering](https://bsse.ethz.ch/) at ETH and the [Roche Institute of Human Biology](https://institutehumanbiology.com/) (IHB) in Basel. For my PhD, I aim to resolve how gene regulatory networks are wired in the intestine and which components are truly unique to humans. To bring these mysteries to light, I’m using single-cell multi-omics, perturbation & comparative genomics data.
+
+Beyond research, I’m passionate about coding, data exploration, and sharing knowledge. This blog is my way of combining those interests — an evolving space to teach and learn about all things data analysis, from biology to the broader world. 
+
+Thanks for stopping by and let’s explore data related concepts together! 🚀
+:::
+
+<br><hr>
+
+# Here are my latest blog posts {.center}
+
+::: {#sample-listings}
+:::
+

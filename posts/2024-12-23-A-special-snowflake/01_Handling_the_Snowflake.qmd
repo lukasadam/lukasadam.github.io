@@ -1,0 +1,270 @@
+---
+title: "How to handle a very special snowflake"
+page-layout: full
+date: 2024-12-23
+image: snowflake_preview.png
+execute:
+  echo: true
+  warning: false
+  message: false
+code-tools: false
+
+comments:
+  giscus: 
+    repo: lukasadam/lukasadam.github.io
+    theme: dark
+
+format:
+  html:
+    code-fold: false
+    code-copy: true
+    toc: true
+    toc-depth: 2
+    toc-title: "Contents"  # Title for the table of contents
+jupyter: snowflake_env
+---
+
+![](./snowflake_logo.png){.float-right}
+
+::: {.justify}
+I know—sketchy title. But bear with me for a second. Today, I want to dive into the world of data warehousing and explain why Snowflake, as a data platform, stands out as the "special snowflake" in this space. So...
+:::
+
+# What Is Snowflake?
+
+::: {.justify}
+Snowflake is a cloud-native data platform that provides a fully managed service for data warehousing, data lakes, and data analytics. Unlike traditional data warehouses, which often require heavy infrastructure management and scaling considerations, Snowflake was built from the ground up to leverage the power and flexibility of the cloud.
+
+But what exactly makes Snowflake so special? Let's break it down.
+:::
+
+::: {.callout-tip collapse="true"}
+### 1. Separation of Compute and Storage
+Traditional data warehouses often couple storage (where the data is saved) with compute resources (how the data is processed). This means if your queries suddenly require more processing power, you might have to scale up everything, including your storage capacity, even if it isn't needed. Snowflake solves this by decoupling compute from storage.
+
+Storage: Your data is stored in scalable cloud storage (e.g., Amazon S3, Azure Blob Storage, or Google Cloud Storage). You only pay for the storage you use.
+Compute: Compute resources are handled via "virtual warehouses." These can scale up or down independently of the storage layer, allowing you to allocate resources based on your query load.
+This separation means you can handle huge amounts of data without bottlenecking your compute resources—or breaking the bank.
+:::
+
+::: {.callout-tip collapse="true"}
+### 2. Multi-Cloud Flexibility
+Snowflake is designed to run on multiple cloud providers, including AWS, Azure, and Google Cloud. This multi-cloud capability ensures you’re not locked into a single cloud provider. You can choose the one that best aligns with your organization's needs—or even operate across clouds for redundancy and performance optimization.
+
+For example:
+- You might store your data in AWS for its storage cost benefits.
+- You might analyze your data in Google Cloud to take advantage of specialized ML tools.
+- Snowflake abstracts the complexity of managing these environments and provides a unified experience.
+:::
+
+::: {.callout-tip collapse="true"}
+### 3. Automatic Scalability and Elasticity
+Snowflake can scale elastically to meet your demands. If you're running a massive data query, you can temporarily scale up your compute resources and scale them back down when the query completes. This auto-scaling happens on the fly, ensuring high performance even under heavy workloads.
+
+For businesses, this translates to cost efficiency and operational flexibility:
+- No need to maintain oversized infrastructure for peak loads.
+- Pay only for the compute resources you use, when you use them.
+:::
+
+::: {.callout-tip collapse="true"}
+### 4. Zero Copy Cloning
+One of Snowflake's most innovative features is its "zero-copy cloning." This allows you to create a copy of a database without duplicating the underlying data. Imagine needing to run analytics on production data but not wanting to interfere with live operations. With zero-copy cloning, you can spin up a clone of your database in seconds, run your queries, and discard it—all without consuming additional storage.
+:::
+
+::: {.callout-tip collapse="true"}
+### 5. Support for Semi-Structured and Structured Data
+Unlike traditional databases that struggle with semi-structured data formats like JSON, Avro, or Parquet, Snowflake handles them seamlessly. Using its "VARIANT" data type, Snowflake can ingest semi-structured data and make it queryable with SQL—no need for complex transformations.
+
+This makes it ideal for modern businesses that deal with mixed data formats, such as:
+- Log data from web servers (semi-structured)
+- Transactional data from databases (structured)
+:::
+
+Snowflake’s design philosophy—decoupling compute and storage, supporting multi-cloud environments, and enabling seamless scalability—sets it apart from traditional data warehouses. Add in features like zero-copy cloning, seamless handling of semi-structured data, and real-time data sharing, and you have a platform that’s not only efficient but also innovative. So, next time someone asks you why Snowflake is so special, you’ll know exactly what to say. Alright, alright...but how do we actually handle the snowflake (upload/download files) using our favorite programming languange python? This is what I will show you today using a simple wrapper class. 
+
+# Handle the snowflake from python
+
+```{python}
+
+import os
+import json
+import pandas as pd
+import snowflake.connector
+
+class SnowflakeHandler:
+    """
+    A wrapper class to upload local CSV files to a Snowflake stage, load the data into a table,
+    and download data from a Snowflake table to a local file.
+    """
+    def __init__(self, local_file_path=None, table_name=None, stage_name="@~", config_path="config.json"):
+        """
+        Initialize the SnowflakeHandler with file paths, table name, and connection details.
+        
+        Args:
+            local_file_path (str): Local path to the CSV file for upload/download.
+            table_name (str): Target Snowflake table name.
+            stage_name (str): Snowflake stage name. Defaults to '@~'.
+            config_path (str): Path to the JSON configuration file with Snowflake credentials.
+        """
+        self.local_file_path = local_file_path
+        self.table_name = table_name
+        self.stage_name = stage_name
+        self.snowflake_stage_file = os.path.basename(local_file_path) if local_file_path else None
+        
+        # Load Snowflake connection parameters from the config file
+        with open(config_path, 'r') as f:
+            self.conn_params = json.load(f)
+        
+        # Connect to Snowflake
+        self.conn = snowflake.connector.connect(**self.conn_params)
+        self.cur = self.conn.cursor()
+
+    def map_dtype_to_snowflake(self, dtype):
+        """
+        Map pandas data types to Snowflake SQL types.
+        
+        Args:
+            dtype (dtype): Pandas data type.
+        
+        Returns:
+            str: Corresponding Snowflake SQL type.
+        """
+        if pd.api.types.is_integer_dtype(dtype):
+            return "INTEGER"
+        elif pd.api.types.is_float_dtype(dtype):
+            return "FLOAT"
+        elif pd.api.types.is_bool_dtype(dtype):
+            return "BOOLEAN"
+        elif pd.api.types.is_datetime64_any_dtype(dtype):
+            return "TIMESTAMP"
+        else:
+            return "STRING"
+
+    def generate_create_table_command(self, df):
+        """
+        Generate a CREATE TABLE SQL statement based on a DataFrame's schema.
+        
+        Args:
+            df (pd.DataFrame): DataFrame for inferring table schema.
+        
+        Returns:
+            str: SQL command to create the table.
+        """
+        column_definitions = []
+        for col in df.columns:
+            col_type = self.map_dtype_to_snowflake(df[col].dtype)
+            column_definitions.append(f'"{col}" {col_type}')
+        column_definitions_str = ",\n    ".join(column_definitions)
+        
+        return f"""
+        CREATE OR REPLACE TABLE {self.table_name} (
+            {column_definitions_str}
+        );
+        """
+
+    def upload_file_to_stage(self):
+        """
+        Upload the local CSV file to the Snowflake stage.
+        """
+        put_command = f"PUT 'file://{self.local_file_path}' {self.stage_name}/{self.snowflake_stage_file} AUTO_COMPRESS=FALSE"
+        self.cur.execute(put_command)
+        print(f"File '{self.snowflake_stage_file}' uploaded to Snowflake stage '{self.stage_name}'.")
+
+    def load_data_into_table(self):
+        """
+        Copy the staged file into the Snowflake table.
+        """
+        copy_command = f"""
+        COPY INTO {self.table_name}
+        FROM {self.stage_name}/{self.snowflake_stage_file}
+        FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+        """
+        self.cur.execute(copy_command)
+        print(f"Data from '{self.snowflake_stage_file}' successfully loaded into table '{self.table_name}'.")
+
+    def download_table(self):
+        """
+        Download data from a Snowflake table and save it as a local CSV file.
+        """
+        query = f"SELECT * FROM {self.table_name}"
+        self.cur.execute(query)
+        
+        # Fetch all rows and column names
+        data = self.cur.fetchall()
+        column_names = [desc[0] for desc in self.cur.description]
+        
+        # Save to CSV using pandas
+        df = pd.DataFrame(data, columns=column_names)
+        df.to_csv(self.local_file_path, index=False)
+        print(f"Data from table '{self.table_name}' successfully downloaded to '{self.local_file_path}'.")
+
+    def upload_table(self):
+        """
+        Full process: Upload file, generate table schema, create table, and load data.
+        """
+        # Read the CSV file to infer schema
+        df = pd.read_csv(self.local_file_path)
+        
+        # Step 1: Upload file to stage
+        self.upload_file_to_stage()
+        
+        # Step 2: Generate and execute CREATE TABLE command
+        create_table_sql = self.generate_create_table_command(df)
+        self.cur.execute(create_table_sql)
+        print(f"Table '{self.table_name}' created successfully.")
+        
+        # Step 3: Load data into table
+        self.load_data_into_table()
+
+    def close_connection(self):
+        """
+        Close the Snowflake connection.
+        """
+        self.cur.close()
+        self.conn.close()
+        print("Snowflake connection closed.")
+```
+
+Now we can upload or download data from the snowflake however we want. Bear in mind that we currently only support upload of csv files. Similarly, downloading tables from the cloud will save them as csv files. Given that we can also upload semi-structured data, I'd like to see whether we can also upload parquet or feather files, which would drastically enhance the usability. 
+
+### Uploading a local csv file to a table in snowflake
+```{python}
+#| eval: false
+
+# Parameters for file upload
+local_csv_path = "/Users/adaml9/Private/kaggle/playground-series/s4e11/train.csv" 
+config_path = "/Users/adaml9/Private/snowflake/upload/config.json"
+stage_name = "@~"
+table_name = "TRAIN"
+
+# Initialize and execute
+handler = SnowflakeHandler(
+        local_file_path=local_csv_path,
+        table_name=table_name,
+        stage_name=stage_name,
+        config_path=config_path
+    )
+handler.upload_table()
+handler.close_connection()
+```
+
+### Downloading a table from snowflake to a local csv file
+```{python}
+#| eval: false
+
+# Parameters for file download
+local_csv_path = "/Users/adaml9/Private/kaggle/playground-series/s4e11/train2.csv" 
+config_path = "/Users/adaml9/Private/snowflake/upload/config.json"
+stage_name = "@~"
+table_name = "TRAIN"
+
+# Initialize and execute
+handler = SnowflakeHandler(
+        local_file_path=local_csv_path,
+        table_name=table_name,
+        stage_name=stage_name,
+        config_path=config_path
+    )
+handler.download_table()
+handler.close_connection()
+```
