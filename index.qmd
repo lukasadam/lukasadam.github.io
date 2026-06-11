@@ -29,6 +29,9 @@ listing:
       <a class="icon-link" href="https://linkedin.com/in/lukas-adam" aria-label="LinkedIn">
         <i class="bi bi-linkedin" aria-hidden="true"></i>
       </a>
+      <a class="icon-link" href="https://scholar.google.com/citations?user=jvEL1T4AAAAJ&hl=en&oi=ao" aria-label="Google Scholar">
+        <i class="bi bi-mortarboard-fill" aria-hidden="true"></i>
+      </a>
     </div>
   </div>
   <figure class="home-portrait">
@@ -54,7 +57,7 @@ listing:
   <div class="focus-panel">
     <h2>Current Focus</h2>
     <ul>
-      <li>Bulk, single-cell, epigenetic, and spatial genomics</li>
+      <li>Bulk, single-cell, epigenetic, and spatial data</li>
       <li>Bioinformatics, machine learning, and statistical modeling</li>
       <li>Reproducible workflows for complex biological data</li>
     </ul>

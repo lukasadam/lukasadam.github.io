@@ -27,6 +27,8 @@ website:
         href: https://github.com/lukasadam
       - icon: linkedin
         href: https://linkedin.com/in/lukas-adam
+      - icon: mortarboard-fill
+        href: https://scholar.google.com/citations?user=jvEL1T4AAAAJ&hl=en&oi=ao
   page-footer:
     left: 
       - text: "License"
