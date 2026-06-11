@@ -18,7 +18,7 @@ listing:
     <h1>Lukas Adam</h1>
     <p class="lede">
       I am a genomics data scientist at the Roche Institute of Human Biology,
-      working with bulk, single-cell, epigenetic, and spatial genomic data.
+      working with bulk, single-cell, epigenetic, and spatial data.
     </p>
     <div class="home-actions" aria-label="Profile links">
       <a class="button button-primary" href="https://lukasadam.github.io/online-cv/">View CV</a>
