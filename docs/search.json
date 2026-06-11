@@ -9,9 +9,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Hey there, I'm Lukas 👋",
+    "title": "Lukas Adam",
     "section": "",
-    "text": "Hey there, I'm Lukas 👋\n\n  \n \n \n  \n   \n  \n    \n     Twitter\n  \n  \n    \n     Github\n  \n  \n    \n     LinkedIn\n  \n  \n    \n     Email\n  \n\n\n\n\nWelcome to my corner of the internet! I’m a PhD student shared between the Department of Biosystems Science and Engineering at ETH and the Roche Institute of Human Biology (IHB) in Basel. For my PhD, I aim to resolve how gene regulatory networks are wired in the intestine and which components are truly unique to humans. To bring these mysteries to light, I’m using single-cell multi-omics, perturbation & comparative genomics data.\nBeyond research, I’m passionate about coding, data exploration, and sharing knowledge. This blog is my way of combining those interests — an evolving space to teach and learn about all things data analysis, from biology to the broader world.\nThanks for stopping by and let’s explore data related concepts together! 🚀\n\n\n\n\nHere are my latest blog posts\n\n\n\n\n\n\n\n\n\n\nHow to handle a very special snowflake\n\n\n\n\n\n\n\n\n\nDec 23, 2024\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Lukas Adam\nGenomics data science • bioinformatics • machine learning\nI am a genomics data scientist at the Roche Institute of Human Biology, working with bulk, single-cell, epigenetic, and spatial genomic data.\nMy work sits mostly in genomics: bulk and single-cell sequencing, epigenetic profiling, spatial data, and the computational methods that make those datasets interpretable. I bring a background in bioinformatics, machine learning, and statistics, with earlier work spanning structure-based drug discovery and automated 3D imaging.\nThis site is where I collect notes on data analysis, bioinformatics, software, and the occasional lesson learned while exploring the world beyond the lab.\nCurrent Focus\nBulk, single-cell, epigenetic, and spatial genomics\nBioinformatics, machine learning, and statistical modeling\nReproducible workflows for complex biological data\nLatest Posts\nHow to handle a very special snowflake\nDec 23, 2024"
   },
   {
     "objectID": "posts/2024-12-23-A-special-snowflake/01_Handling_the_Snowflake.html",

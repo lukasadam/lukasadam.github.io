@@ -1,31 +1,335 @@
-/* css styles */
+:root {
+  --ink: #202225;
+  --muted: #687078;
+  --paper: #fbfaf7;
+  --panel: #ffffff;
+  --line: #e4dfd7;
+  --accent: #355f5a;
+  --accent-strong: #244540;
+  --accent-soft: #e5efec;
+  --gold: #b06f2b;
+}
 
-/* arrange the list of links in a row with flex */
-.links {
-    width: 90%;
-    margin: 0 auto;
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+a {
+  color: var(--accent-strong);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  color: var(--gold);
+}
+
+.navbar {
+  background: rgba(32, 34, 37, 0.94);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+}
+
+.navbar .nav-link {
+  font-size: 0.95rem;
+  letter-spacing: 0;
+}
+
+.navbar .nav-link.active {
+  font-weight: 700;
+}
+
+.quarto-container.page-layout-full,
+.column-page {
+  max-width: none;
+}
+
+main.content {
+  padding-bottom: 4rem;
+}
+
+.home-hero,
+.intro-grid,
+.posts-section,
+#listing-sample-listings {
+  width: min(1120px, calc(100% - 2rem));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.home-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+  min-height: calc(100vh - 88px);
+  padding: clamp(4.5rem, 9vw, 7rem) 0 clamp(3rem, 7vw, 5rem);
+}
+
+.home-hero__content {
+  max-width: 720px;
+}
+
+.eyebrow {
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  margin: 0 0 1rem;
+  text-transform: uppercase;
+}
+
+.home-hero h1 {
+  color: var(--ink);
+  font-size: clamp(3.4rem, 9vw, 7rem);
+  font-weight: 800;
+  letter-spacing: 0;
+  line-height: 0.95;
+  margin: 0;
+}
+
+.lede {
+  color: #384047;
+  font-size: clamp(1.2rem, 2.3vw, 1.55rem);
+  line-height: 1.55;
+  margin: 1.6rem 0 0;
+  max-width: 720px;
+}
+
+.home-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.button,
+.icon-link {
+  align-items: center;
+  border-radius: 8px;
+  display: inline-flex;
+  font-weight: 700;
+  justify-content: center;
+  min-height: 44px;
+  text-decoration: none;
+}
+
+.button {
+  padding: 0.65rem 1rem;
+}
+
+.button-primary {
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  color: #fff;
+}
+
+.button-primary:hover {
+  background: var(--accent-strong);
+  border-color: var(--accent-strong);
+  color: #fff;
+}
+
+.button-secondary,
+.icon-link {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  color: var(--ink);
+}
+
+.button-secondary:hover,
+.icon-link:hover {
+  border-color: #cfc6ba;
+  color: var(--accent-strong);
+}
+
+.icon-link {
+  width: 44px;
+}
+
+.bi::before {
+  margin-right: 0;
+}
+
+.home-portrait {
+  margin: 0;
+}
+
+.home-portrait img {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: block;
+  object-fit: cover;
+  width: 100%;
+}
+
+.intro-grid {
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  grid-template-columns: minmax(0, 1.4fr) minmax(260px, 0.6fr);
+  padding: clamp(2.5rem, 6vw, 4rem) 0;
+}
+
+.intro-grid p {
+  color: #3d454c;
+  font-size: 1.05rem;
+  margin-bottom: 1rem;
+  max-width: 760px;
+}
+
+.focus-panel {
+  align-self: start;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 1.25rem;
+}
+
+.focus-panel h2 {
+  font-size: 1rem;
+  margin: 0 0 0.8rem;
+}
+
+.focus-panel ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.focus-panel li {
+  margin-bottom: 0.5rem;
+}
+
+.posts-section {
+  border-top: 1px solid var(--line);
+  padding: clamp(2.2rem, 5vw, 3.5rem) 0 1rem;
+}
+
+.section-heading h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  letter-spacing: 0;
+  line-height: 1.1;
+  margin: 0;
+}
+
+#listing-sample-listings {
+  padding-bottom: 5rem;
+}
+
+#listing-sample-listings .grid {
+  gap: 1.25rem;
+}
+
+#listing-sample-listings .quarto-grid-item {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: none;
+  overflow: hidden;
+  transition: border-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+}
+
+#listing-sample-listings .quarto-grid-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+#listing-sample-listings .quarto-grid-link:hover .quarto-grid-item {
+  border-color: #cfc6ba;
+  box-shadow: 0 14px 32px rgba(32, 34, 37, 0.08);
+  transform: translateY(-2px);
+}
+
+#listing-sample-listings .card-img-top {
+  background: #f0ede7;
+  margin: 0;
+}
+
+#listing-sample-listings .thumbnail-image {
+  height: 190px !important;
+  object-fit: cover;
+  width: 100%;
+}
+
+#listing-sample-listings .card-body {
+  padding: 1.15rem;
+}
+
+#listing-sample-listings .card-title {
+  color: var(--ink);
+  font-size: 1.18rem;
+  line-height: 1.25;
+}
+
+#listing-sample-listings .listing-description,
+#listing-sample-listings .card-attribution {
+  color: var(--muted);
+}
+
+.page-footer {
+  background: #202225;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.page-footer a {
+  color: #fff;
+}
+
+.float-right {
+  border-radius: 8px;
+  float: right;
+  margin: 0 0 1rem 1rem;
+  max-width: 40%;
+}
+
+.quarto-figure-caption {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  text-align: center;
+}
+
+@media (max-width: 850px) {
+  body {
+    font-size: 16px;
   }
-  
-  .links ul {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+
+  .home-hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding-top: 4rem;
   }
-  
-  /* style the links */
-  .links a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1.2rem;
-    padding: 0 1rem;
+
+  .home-portrait {
+    max-width: 320px;
   }
-  
-  /* remove list styling */
-  .links ul {
-    list-style: none;
+
+  .intro-grid {
+    grid-template-columns: 1fr;
   }
-  
-  .bi::before {
-    margin-right: 0.2em;
+}
+
+@media (max-width: 560px) {
+  .home-hero,
+  .intro-grid,
+  .posts-section,
+  #listing-sample-listings {
+    width: min(100% - 1.25rem, 1120px);
   }
+
+  .home-actions {
+    align-items: stretch;
+  }
+
+  .button {
+    flex: 1 1 130px;
+  }
+}
